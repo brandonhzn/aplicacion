@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+
+    has_secure_password
+    validates_presence_of :nombre, :email, :password_digest
+
     has_many :results
     has_many :places, through: :results
     

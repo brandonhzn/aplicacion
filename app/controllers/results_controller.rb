@@ -1,19 +1,19 @@
 class ResultsController < ApplicationController
     before_action :set_todo, only: [:show, :update, :destroy]
 
-    # GET /Establecimiento
+    # GET /results
     def index
       @results = Result.all
       json_response(@results)
     end
   
-    # POST /Establecimiento
+    # POST /results
     def create
       @results = Result.create!(todo_params)
       json_response(@results, :created)
     end
   
-    # GET /establecimientos/:id
+    # GET /results/:id
     def show
       json_response(@results)
     end

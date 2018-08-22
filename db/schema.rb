@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2018_08_17_171331) do
   create_table "users", force: :cascade do |t|
     t.string "nombre"
     t.string "apellido"
+    t.string "email"
     t.string "documento"
     t.string "tipodoc"
     t.string "telefono"
@@ -88,6 +89,7 @@ ActiveRecord::Schema.define(version: 2018_08_17_171331) do
     t.string "descripcion"
     t.string "calificacion"
     t.boolean "estadoGuia"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

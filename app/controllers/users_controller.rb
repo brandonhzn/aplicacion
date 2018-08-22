@@ -1,30 +1,33 @@
 class UsersController < ApplicationController
     before_action :set_todo, only: [:show, :update, :destroy]
-
-    # GET /Establecimiento
+    skip_before_action :authorize_request, only: :create
+    # GET /user
     def index
       @users = User.all
       json_response(@users)
     end
   
-    # POST /Establecimiento
+    # POST /user
     def create
       @users = User.create!(todo_params)
-      json_response(@users, :created)
+      auth_token = AuthenticateUser.new(@users.email, @users.password).call
+      response = { message: Message.account_created, auth_token: auth_token }
+      json_response(response, :created)
+      #json_response(@users, :created)
     end
   
-    # GET /establecimientos/:id
+    # GET /users/:id
     def show
       json_response(@users)
     end
   
-    # PUT /todos/:id
+    # PUT /users/:id
     def update
       @users.update(todo_params)
       head :no_content
     end
   
-    # DELETE /todos/:id
+    # DELETE /users/:id
     def destroy
       @users.destroy
       head :no_content
@@ -34,9 +37,9 @@ class UsersController < ApplicationController
   
     def todo_params
       # whitelist params
-      params.permit(:nombre, :apellido, :correo, 
+      params.permit(:nombre, :apellido, :email, 
       :documento, :tipodoc, :telefono, :rol, :estado,
-      :descripcion, :calificacion, :estadoGuia)
+      :descripcion, :calificacion, :estadoGuia, :password)
     end
   
     def set_todo

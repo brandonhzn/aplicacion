@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
+    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users do 
     resources :gservices
     resources :gcapacities
@@ -18,4 +19,8 @@ end
 resources :capacities do
     resources :gcapacities
 end
+
+post 'auth/login', to: 'authentication#authenticate'
+post 'signup', to: 'users#create'
+
 end

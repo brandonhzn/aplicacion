@@ -39,7 +39,8 @@ class PlacesController < ApplicationController
   
     def todo_params
       # whitelist params
-      params.permit(:nombre, :direccion, :localidad, :ciudad, :telefono, :latitud, :longitud,
+      params.permit(:nombre, :direccion, :localidad,
+       :ciudad, :telefono, :latitud, :longitud,
       :horario, :estado, :web, :category)
     end
   
